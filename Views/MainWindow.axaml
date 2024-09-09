@@ -9,7 +9,10 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/EMXControls.ico"
 			 xmlns:mxdg="https://schemas.eremexcontrols.net/avalonia/datagrid"
+			 xmlns:mxd="https://schemas.eremexcontrols.net/avalonia/docking"
 xmlns:mxe="https://schemas.eremexcontrols.net/avalonia/editors"
+			 xmlns:mxtl="https://schemas.eremexcontrols.net/avalonia/treelist"
+			 xmlns:local="clr-namespace:AvaloniaApplication1.ViewModels"
         Title="AvaloniaApplication1">
 
     <Design.DataContext>
@@ -17,16 +20,55 @@ xmlns:mxe="https://schemas.eremexcontrols.net/avalonia/editors"
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+	<mxd:DockManager>
+		<mxd:DockManager.AutoHideGroups>
+			<mxd:AutoHideGroup Dock="Left">
+				<mxd:DockPane Header="Explorer">
+					<mxtl:TreeViewControl Name="treeListUnbound" AutoExpandAllNodes="True" DataFieldName="FirstName"
+					 HorizontalAlignment="Stretch">
+						<mxtl:TreeViewControl.Nodes>
+							<mxtl:TreeListNode>
+								<mxtl:TreeListNode.Content>
+									<local:Person FirstName="Roman" LastName="Suponin"
+									 City="Saint Petersburg" Phone="(7)724-347-47"/>
+								</mxtl:TreeListNode.Content>
+								<mxtl:TreeListNode.Nodes>
+									<mxtl:TreeListNode >
+										<mxtl:TreeListNode.Content>
+											<local:Person FirstName="Ivan" LastName="Kovalev"
+											 City="Moscow" Phone="(7)111-90-73"/>
+										</mxtl:TreeListNode.Content>
+										<mxtl:TreeListNode.Nodes>
+											<mxtl:TreeListNode>
+												<mxtl:TreeListNode.Content>
+													<local:Person FirstName="Artin" LastName="Tusk"
+													 City="Aksaray" Phone="(4)123-14-56"/>
+												</mxtl:TreeListNode.Content>
+											</mxtl:TreeListNode>
+											<mxtl:TreeListNode>
+												<mxtl:TreeListNode.Content>
+													<local:Person FirstName="George" LastName="Botkin"
+													 City="Hua Hin" Phone="(61)457-198-34"/>
+												</mxtl:TreeListNode.Content>
+												<mxtl:TreeListNode.Nodes>
+													<mxtl:TreeListNode>
+														<mxtl:TreeListNode.Content>
+															<local:Person FirstName="Lee" LastName="Wan"
+															 City="Shanghai" Phone="(56)335-57-89"/>
+														</mxtl:TreeListNode.Content>
+													</mxtl:TreeListNode>
+												</mxtl:TreeListNode.Nodes>
+											</mxtl:TreeListNode>
+										</mxtl:TreeListNode.Nodes>
+									</mxtl:TreeListNode>
+								</mxtl:TreeListNode.Nodes>
+							</mxtl:TreeListNode>
+						</mxtl:TreeViewControl.Nodes>
+					</mxtl:TreeViewControl>
+				</mxd:DockPane>
+			</mxd:AutoHideGroup>
+		</mxd:DockManager.AutoHideGroups>
 
-	<mxdg:DataGridControl x:Name="dataGrid" ItemsSource="{Binding Employees}"
-	 AutoGenerateColumns="False" BorderThickness="1,1">
-		<mxdg:GridColumn FieldName="FirstName" Width="*" MinWidth="80"/>
-		<mxdg:GridColumn FieldName="LastName" Width="*" MinWidth="80"/>
-		<mxdg:GridColumn FieldName="HiredAt" Header="Hire Date" Width="*" MinWidth="80">
-			<mxdg:GridColumn.EditorProperties>
-				<mxe:DateEditorProperties/>
-			</mxdg:GridColumn.EditorProperties>
-		</mxdg:GridColumn>
-	</mxdg:DataGridControl>
-	
+	</mxd:DockManager>
+
 </mx:MxWindow>

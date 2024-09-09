@@ -6,25 +6,30 @@ namespace AvaloniaApplication1.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    [ObservableProperty]
-    IList<EmployeeInfo> employees;
 
     public MainWindowViewModel()
     {
-        Employees = new List<EmployeeInfo>();
     }
 
 }
 
-public class EmployeeInfo
+public partial class Person : ObservableObject
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public DateTime BirthDate { get; set; }
-    public DateTime HiredAt { get; set; }
-    public int Experience { get; set; }
-    public string Position { get; set; }
-    public bool Married { get; set; }
-    public string City { get; set; }
-    public string Phone { get; set; }
+    public Person() { }
+    public Person(string firstName, string lastName, string city, string phone)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+        this.phone = phone;
+    }
+
+    [ObservableProperty]
+    string firstName;
+    [ObservableProperty]
+    string lastName;
+    [ObservableProperty]
+    string city;
+    [ObservableProperty]
+    string phone;
 }
