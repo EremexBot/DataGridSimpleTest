@@ -1,0 +1,32 @@
+<mx:MxWindow xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApplication1.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mx="https://schemas.eremexcontrols.net/avalonia"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaApplication1.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/EMXControls.ico"
+			 xmlns:mxdg="https://schemas.eremexcontrols.net/avalonia/datagrid"
+xmlns:mxe="https://schemas.eremexcontrols.net/avalonia/editors"
+        Title="AvaloniaApplication1">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<mxdg:DataGridControl x:Name="dataGrid" ItemsSource="{Binding Employees}"
+	 AutoGenerateColumns="False" BorderThickness="1,1">
+		<mxdg:GridColumn FieldName="FirstName" Width="*" MinWidth="80"/>
+		<mxdg:GridColumn FieldName="LastName" Width="*" MinWidth="80"/>
+		<mxdg:GridColumn FieldName="HiredAt" Header="Hire Date" Width="*" MinWidth="80">
+			<mxdg:GridColumn.EditorProperties>
+				<mxe:DateEditorProperties/>
+			</mxdg:GridColumn.EditorProperties>
+		</mxdg:GridColumn>
+	</mxdg:DataGridControl>
+	
+</mx:MxWindow>
